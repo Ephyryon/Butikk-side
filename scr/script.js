@@ -47,7 +47,7 @@ function Choice() {
     jarlsberg?.addEventListener("click", function() {
         list.push(ting);
         payment += price;
-        sessionStorage.setItem("payment");
+        sessionStorage.setItem("payment", JSON.stringify(payment));
         sessionStorage.setItem("list", JSON.stringify(list));
         console.log(list);
         updateCartContents();
