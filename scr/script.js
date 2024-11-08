@@ -1,20 +1,24 @@
 let list = JSON.parse(sessionStorage.getItem("list")) || [];
+let payment = JSON.parse(sessionStorage.getItem("payment")) || 0;
 
-ting = "";
-payment = 0;
-switch (window.location.pathname) {
-    case '/scr/handlevogn.html':
-        ting = "";
-        price = 0;
-    case '/scr/4.html':
-        ting = "jarlsberg"
-        price = 139;
+const items = {
+    '/scr/1.html': { name: 'Type1Shooter', price: 150 },
+    '/scr/2.html': { name: 'Platform Survival', price: 239},
+    '/scr/3.html': { name: 'jarlsberg', price: 139},
+    '/scr/4.html': { name: 'Musikk Spiller', price: 199 }
+};
+
+function calculatePayment() {
+    payment = list.reduce((total, itemName) => {
+        const item = Object.values(items).find(i => i.name === itemName);
+        return total + (item ? item.price : 0);
+    }, 0);
+    sessionStorage.setItem("payment", JSON.stringify(payment));
+    if (payment) {
+        document.getElementById('payment').innerText = `Total Payment: ${payment}`;
     }
+}
 
-
-
-
-/* Jeg prøvde å finne en metode hvor jeg kunne skrive en liste på nettsiden. */
 function updateCartContents() {
     const cartContents = document.getElementById("cartContents");
     if (cartContents) {
@@ -26,33 +30,34 @@ function updateCartContents() {
                 list.splice(index, 1);
                 sessionStorage.setItem("list", JSON.stringify(list));
                 updateCartContents();
+                calculatePayment();
             });
             cartContents.appendChild(li);
         });
-    } 
+    }
 }
 
-/* Her lagde jeg en funksjon som gir en effect til knappene på nettsiden. */
 function Choice() {
     const handlevogn = document.getElementById("handlevogn");
-    const jarlsberg = document.getElementById("jarlsberg");
-    const remove = document.getElementById("remove");
+    const addItem = document.getElementById("addItem");
 
-    /* Handlevogn tar en til handlevognen hvor handlevognen (skulle blit) blir skrivd ut. */
     handlevogn?.addEventListener("click", function() {
         window.location.href = "handlevogn.html";
     });
 
-    /* Jarlsberg leger en jarlsberg til handlevogn listen. */
-    jarlsberg?.addEventListener("click", function() {
-        list.push(ting);
-        payment += price;
-        sessionStorage.setItem("payment", JSON.stringify(payment));
-        sessionStorage.setItem("list", JSON.stringify(list));
-        console.log(list);
-        updateCartContents();
+    addItem?.addEventListener("click", function() {
+        const currentPage = window.location.pathname;
+        const item = items[currentPage];
+        if (item) {
+            list.push(item.name);
+            sessionStorage.setItem("list", JSON.stringify(list));
+            console.log(list);
+            updateCartContents();
+            calculatePayment();
+        }
     });
 }
 
 Choice();
 updateCartContents();
+calculatePayment();
