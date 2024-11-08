@@ -1,0 +1,94 @@
+.h1 {
+    display: flex;
+    justify-content: center;
+}
+.container {
+    width: 100%;
+    height: 100%;
+}
+.container2 {
+    width: 100%;
+    height: 100%;
+    padding: 7.5%;
+    padding-top: 2%;
+    display: grid;
+}
+#box-grid {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    column-gap: 30%;
+    grid-template-columns: 20% 20%;
+    grid-template-rows: 90% 90%;
+}
+.text-main {
+    font-size: 150%;
+    padding-top: 10%;
+    width: 100%;
+    height: 50%;
+    justify-items: center;
+}
+#text-1 {
+    background-image: url(../imgs/spr_player_image.png);
+    border-radius: 15%;
+    margin-left: 150%;
+}
+#text-2 {
+    background-image: url(../imgs/image.png);
+    border-radius: 15%;
+    background-size: cover;
+    color: white;
+}
+#text-3 {
+    background-image: url(../imgs/jarlsberg.jpg);
+    border-radius: 15%;
+    margin-left: 150%;
+    image-rendering: optimizeSpeed;
+    background-size: cover;
+}
+#text-4 {
+    background-image: url(../imgs/button.jpg);
+    border-radius: 15%;
+    background-size: cover;
+}
+.text-sub-page {
+    font-size: 150%;
+    margin: 5%;
+    width: 90%;
+    height: 50%;
+}
+.box-grid-sub-page {
+    display: grid;
+    grid-template-columns: 100%;
+    background-color: greenyellow;
+}
+.container2-sub-page {
+    width: 25%;
+    height: 50%;
+    padding: 7.5%;
+    padding-left: 39%;
+    display: grid;
+}
+item {
+    font-size: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+img {
+    width: 75%;
+}
+.center {
+    padding-left: 25%;
+    padding-top: 5%;
+}
+#t-1 {
+    color: rgb(79, 79, 79);
+}
+.handlevogn-liste {
+    background-color: white;
+    border-radius: 5px;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
